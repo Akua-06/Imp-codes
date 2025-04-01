@@ -26,7 +26,7 @@ async def is_subscribed(bot, query, channel):
 
 #@Client.on_message.....
 #async def start(....
-    if AUTH_CHANNEL:
+    if FSUB_CHANNEL:
         try:
             btn = await is_subscribed(client, message, FSUB_CHANNEL)
             if btn:
