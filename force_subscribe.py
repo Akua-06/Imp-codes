@@ -4,11 +4,11 @@ from os import environ
 
 id_pattern = re.compile(r'^.\d+$')
 
-AUTH_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('AUTH_CHANNEL', '').split()] # give channel id with seperate space. Ex : ('-10073828 -102782829 -1007282828')
+FSUB_CHANNEL = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('FSUB_CHANNEL', '').split()] # give channel id with seperate space. Ex : ('-10073828 -102782829 -1007282828')
 
 
-# force subscribe main code :-
-from info import AUTH_CHANNEL
+# force subscribe main code :- (Can be set in helper_func.py file) 
+from config import FSUB_CHANNEL
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import *
 
@@ -28,7 +28,7 @@ async def is_subscribed(bot, query, channel):
 #async def start(....
     if AUTH_CHANNEL:
         try:
-            btn = await is_subscribed(client, message, AUTH_CHANNEL)
+            btn = await is_subscribed(client, message, FSUB_CHANNEL)
             if btn:
                 username = (await client.get_me()).username
                 if message.command[1]:
